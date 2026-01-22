@@ -25,6 +25,15 @@ pipeline {
             }
         }
 
+        stage('Verify Docker') {
+            steps {
+                sh '''
+                which docker
+                docker --version
+                '''
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $DOCKER_IMAGE:latest .'
