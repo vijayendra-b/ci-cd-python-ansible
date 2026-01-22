@@ -16,8 +16,11 @@ pipeline {
 
         stage('Install Dependencies & Test') {
             steps {
-                sh 'pip3 install pytest'
-                sh 'pytest tests/'
+                sh '''
+                    python3 -m pip install --upgrade pip
+                    python3 -m pip install pytest
+                    python3 -m pytest tests/
+                '''
             }
         }
 
