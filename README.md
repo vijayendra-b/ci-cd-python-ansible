@@ -37,7 +37,7 @@ Docker Hub – Image registry
 
 Python (Flask) – Demo application
 
-# Configure Jenkins
+## Configure Jenkins
 
 Jenkins Setup
 
