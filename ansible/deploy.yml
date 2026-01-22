@@ -1,0 +1,19 @@
+- name: Deploy Python App using Docker
+  hosts: web
+  become: false
+
+  tasks:
+    - name: Remove existing container (if any)
+      community.docker.docker_container:
+        name: python_app
+        state: absent
+      ignore_errors: true
+
+    - name: Run Python application container
+      community.docker.docker_container:
+        name: python_app
+        image: vijayendra1/python-cicd-demo:latest
+        state: started
+        restart_policy: always
+        ports:
+          - "5000:5000"
