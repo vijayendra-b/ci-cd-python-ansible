@@ -42,11 +42,22 @@ pipeline {
 
         stage('Push Image to Docker Hub') {
             steps {
-                withDockerRegistry([url: 'https://index.docker.io/v1/', credentialsId: 'b799765c-9aab-4075-8537-541d450e7f9d']) {
-                    sh '/usr/local/bin/docker push $DOCKER_IMAGE:latest'
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'b799765c-9aab-4075-8537-541d450e7f9d',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )
+                ]) {
+                    sh '''
+                    /usr/local/bin/docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" https://index.docker.io/v1/
+                    /usr/local/bin/docker push vijayendra1/python-cicd-demo:latest
+                    /usr/local/bin/docker logout
+                    '''
                 }
             }
         }
+
 
         stage('Deploy using Ansible') {
             steps {
