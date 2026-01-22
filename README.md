@@ -2,6 +2,7 @@
 
 
 ## Project Structure
+```
 ci-cd-python-demo/
 │
 ├── app/
@@ -19,6 +20,8 @@ ci-cd-python-demo/
 │   └── deploy.yml
 │
 └── README.md
+
+```
 
 ## Tools Used
 
