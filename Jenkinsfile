@@ -9,7 +9,8 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/vijayendra-b/ci-cd-python-ansible.git'
+                git branch: 'main',
+                    url: 'https://github.com/vijayendra-b/ci-cd-python-ansible.git'
             }
         }
 
