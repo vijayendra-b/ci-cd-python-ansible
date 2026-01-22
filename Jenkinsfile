@@ -36,14 +36,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE:latest .'
+                sh '/usr/local/bin/docker build -t $DOCKER_IMAGE:latest .'
             }
         }
 
         stage('Push Image to Docker Hub') {
             steps {
                 withDockerRegistry([url: 'https://index.docker.io/v1/', credentialsId: 'b799765c-9aab-4075-8537-541d450e7f9d']) {
-                    sh 'docker push $DOCKER_IMAGE:latest'
+                    sh '/usr/local/bin/docker push $DOCKER_IMAGE:latest'
                 }
             }
         }
